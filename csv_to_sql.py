@@ -18,16 +18,16 @@ def csv_to_sql(csv_file: str, table_name: str) -> str:
 			# Aqui é onde a magia acontece, baseando-se na quantidade e no tipo de colunas
 			# que a tabela tem. Alterar conforme necessidade, e tratar casos especiais.
 			row_str = f"{row[0]}, {row[1]}, '{p_name}', '{row[3]}', {row[4]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}, {row[9]}, {row[10]}, {row[11]}, {row[12]}, {row[13]}, {row[14]}, {row[15]}, {row[16]}, {row[17]}, {row[18]}, {row[19]}, {row[20]}, {row[21]}"
-				
+
 			rows_inserts += f"INSERT INTO {table_name} VALUES ({row_str});\n"
-		
+
 	return rows_inserts
 
 
 def save_to_sql(dest_path: str, sql: str) -> str:
 	head_tail = os.path.split(dest_path)
 	dirs = head_tail[0] if head_tail[0] != '' else 'data'
-	
+
 	if not os.path.isdir(dirs):
 		try:
 			os.makedirs(dirs, exist_ok=True)
@@ -39,7 +39,7 @@ def save_to_sql(dest_path: str, sql: str) -> str:
 
 	with open(full_path, 'w', encoding='utf-8') as f_obj:
 		f_obj.write(sql)
-	
+
 	return full_path
 
 
